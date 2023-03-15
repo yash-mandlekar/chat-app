@@ -1,0 +1,5 @@
+.home{
+    display: flex;
+    padding: .2vmax 3vmax;
+    gap: 1vmax;
+}
