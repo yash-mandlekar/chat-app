@@ -55,6 +55,7 @@
   max-width: 60%;
   border-bottom-left-radius: 0;
   position: relative;
+  word-break: break-all;
 }
 .right {
   align-items: flex-end;
