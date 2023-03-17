@@ -8,6 +8,7 @@ const UsersList = ({ setselectedUser, setMsgs, users, setusers }) => {
   const [toggle, setToggle] = useState(false);
   useEffect(() => {
     socket.on("users", (data) => {
+      console.log(data);
       setusers(data);
     });
   }, [socket]);

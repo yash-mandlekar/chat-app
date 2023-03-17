@@ -23,7 +23,7 @@ const {
 } = require("../controllers/indexController");
 const { isLoggedIn } = require("../utils/auth");              // <--- import  isLoggedIn  middleware              `a        `a    
 
-router.get("/", isLoggedIn, homepage);
+router.get("/", homepage);
 // router.route("/").get(homepage);
 
 router.get("/loaduser", isLoggedIn, currentuser);
