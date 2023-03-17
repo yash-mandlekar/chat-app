@@ -21,7 +21,6 @@ const io = new Server(server, {
     origin: ["http://localhost:3000", process.env.REACT_APP_API_URL],
   },
 });
-console.log(process.env.REACT_APP_API_URL);
 io.use((socket, next) => {
   const username = socket.handshake.auth.username;
   const userId = socket.handshake.auth.userId;
