@@ -62,7 +62,7 @@ userModel.methods.comparepassword = function (userpassword) {
 };
 
 userModel.methods.gettoken = function () {
-  return jwt.sign({ id: this._id }, "SECRETKEYJWT", { expiresIn: "4h" });
+  return jwt.sign({ id: this._id }, "SECRETKEYJWT", { expiresIn: "24h" });
 };
 
 const user = mongoose.model("user", userModel);

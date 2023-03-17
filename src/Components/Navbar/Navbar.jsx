@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Outlet } from "react-router-dom";
 import { asyncsignout } from "../../store/userActions";
 import "./Navbar.css";
+import { socket } from "../../App";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -11,6 +12,7 @@ const Navbar = () => {
   );
   const handleSignout = () => {
     dispatch(asyncsignout());
+    socket.disconnect();
   };
   return (
     <>
@@ -27,8 +29,7 @@ const Navbar = () => {
             <ul className="nav-right">
               <li>
                 <NavLink
-                  className={({ isActive }) => isActive ? "active" : ""
-                }
+                  className={({ isActive }) => (isActive ? "active" : "")}
                   to="/"
                 >
                   Home
@@ -36,8 +37,7 @@ const Navbar = () => {
               </li>
               <li>
                 <NavLink
-                  className={({ isActive }) => isActive ? "active" : ""
-                }
+                  className={({ isActive }) => (isActive ? "active" : "")}
                   to="/profile"
                 >
                   Profile
@@ -45,9 +45,11 @@ const Navbar = () => {
               </li>
               <li>
                 <NavLink
-                className={({ isActive }) =>isActive ? "" : ""
-              }
-                onClick={handleSignout}>Logout</NavLink>
+                  className={({ isActive }) => (isActive ? "" : "")}
+                  onClick={handleSignout}
+                >
+                  Logout
+                </NavLink>
               </li>
             </ul>
           )}

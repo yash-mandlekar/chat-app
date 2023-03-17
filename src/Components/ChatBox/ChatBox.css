@@ -27,6 +27,10 @@
   font-size: 1.2rem;
   color: #fff;
 }
+.chat-box-profile .status {
+  font-size: 0.8rem;
+  color: #fff;
+}
 /* Main Chat Box */
 .chat-box-main {
   max-height: 72vh;
@@ -55,7 +59,7 @@
   max-width: 60%;
   border-bottom-left-radius: 0;
   position: relative;
-  word-break: break-all;
+  word-wrap: break-word;
 }
 .right {
   align-items: flex-end;
@@ -110,10 +114,10 @@
 .chat-box-footer button {
   font-family: inherit;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 1.2vmax;
   background: #007acc;
   color: white;
-  padding: 0.7em 1em;
+  padding: 0.7vmax 1em;
   padding-left: 0.9em;
   display: flex;
   align-items: center;
@@ -143,6 +147,9 @@
 }
 .chat-box-footer button:active {
   transform: scale(0.95);
+}
+.status{
+  transition: ease-in 0.5s;
 }
 @keyframes fly-1 {
   from {

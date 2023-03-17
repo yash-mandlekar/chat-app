@@ -14,21 +14,26 @@ app.use(
     origin: ["http://localhost:3000"],
     credentials: true,
   })
-);
-const server = http.createServer(app);
-const io = new Server(server, {
-  cors: {
-    origin: "http://localhost:3000"
-  },
+  );
+  const server = http.createServer(app);
+  const io = new Server(server, {
+    cors: {
+      origin: "http://localhost:3000"
+    },
+  });
+  
+io.use((socket, next) => {
+  const username = socket.handshake.auth.username;
+  const userId = socket.handshake.auth.userId;
+  const image = socket.handshake.auth.image;
+  if(username && userId) {
+    socket.username = username;
+    socket.userId = userId;
+    socket.image = image;
+    return next();
+  }
+  return next(new Error("Authentication error"));
 });
-
-// io.use((socket, next) => {
-//   const sessionId = socket.handshake.auth.sessionId;
-//   if(sessionId){
-//     return next();
-//   }
-//   return next(new Error("Authentication error"));
-// });
 
 socketHandler(io);
 // databaseconnection

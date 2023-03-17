@@ -22,7 +22,6 @@ exports.currentuser = async (req, res) => {
 
 exports.signup = async (req, res, next) => {
   try {
-    console.log(req.body);
     let user = await User.findOne({ email: req.body.email })
       .select("+password")
       .exec();

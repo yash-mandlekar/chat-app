@@ -24,7 +24,7 @@
   transition: cubic-bezier(0.19, 1, 0.22, 1) .5s;
 }
 .user:hover{
-  background-color: #252526;
+  background-color: #151515;
 }
 .user .status {
   position: absolute;
@@ -90,4 +90,11 @@
   .toggle-list{
     display: flex;
   }
+}
+.blue-dot{
+  background-color: #007acc;
+  width: 1vmax;
+  height: 1vmax;
+  border-radius: 50%;
+  margin-left: 1vmax;
 }
