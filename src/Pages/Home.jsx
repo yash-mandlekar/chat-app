@@ -34,7 +34,7 @@ const Home = () => {
   const privateMessage = useCallback((data) => {
     if(data.from === selectedUser?.userId){
       setMsgs((msgs) => [...msgs, data]);
-    }else{  
+    }else{   
       handleMsgStatus(data,true);
     }
   }, [selectedUser,handleMsgStatus]);
