@@ -35,7 +35,7 @@ const Home = () => {
     (data) => {
       if (data.from === selectedUser?.userId) {
         setMsgs((msgs) => [...msgs, data]);
-      } else {
+      } else { 
         handleMsgStatus(data, true);
       }
     },
