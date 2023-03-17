@@ -1,4 +1,4 @@
-require("dotenv").config({ path: "./.env" });
+require("dotenv").config({ path: "../.env" });
 var createError = require("http-errors");
 const express = require("express");
 const cookieParser = require("cookie-parser");
@@ -11,22 +11,22 @@ const PORT = process.env.PORT || 4000;
 const indexRouter = require("./routes/indexRoute");
 app.use(
   require("cors")({
-    origin: ["http://localhost:3000","https://chat-app-cyan-five.vercel.app"],
+    origin: ["http://localhost:3000", process.env.REACT_APP_API_URL],
     credentials: true,
   })
-  );
-  const server = http.createServer(app);
-  const io = new Server(server, {
-    cors: {
-      origin: ["https://chat-app-cyan-five.vercel.app","http://localhost:3000"],
-    },
-  });
-  
+);
+const server = http.createServer(app);
+const io = new Server(server, {
+  cors: {
+    origin: ["http://localhost:3000", process.env.REACT_APP_API_URL],
+  },
+});
+console.log(process.env.REACT_APP_API_URL);
 io.use((socket, next) => {
   const username = socket.handshake.auth.username;
   const userId = socket.handshake.auth.userId;
   const image = socket.handshake.auth.image;
-  if(username && userId) {
+  if (username && userId) {
     socket.username = username;
     socket.userId = userId;
     socket.image = image;
@@ -38,7 +38,6 @@ io.use((socket, next) => {
 socketHandler(io);
 // databaseconnection
 require("./models/database").databaseconnection();
-
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
