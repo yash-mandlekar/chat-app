@@ -11,14 +11,14 @@ const PORT = process.env.PORT || 4000;
 const indexRouter = require("./routes/indexRoute");
 app.use(
   require("cors")({
-    origin: ["http://localhost:3000","https://chat-app-cyan-five.vercel.app/"],
+    origin: ["http://localhost:3000","https://chat-app-cyan-five.vercel.app"],
     credentials: true,
   })
   );
   const server = http.createServer(app);
   const io = new Server(server, {
     cors: {
-      origin: "https://chat-app-cyan-five.vercel.app/"
+      origin: "https://chat-app-cyan-five.vercel.app"
     },
   });
   
