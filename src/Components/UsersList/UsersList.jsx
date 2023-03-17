@@ -1,19 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { forwardRef, useEffect, useState } from "react";
 import "./UsersList.css";
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 import { useSelector } from "react-redux";
 import { socket } from "../../App";
-const UsersList = ({ setselectedUser, setMsgs, users, setusers }) => {
+const UsersList = forwardRef(({ setselectedUser, setMsgs, users, setusers },ref) => {
   const { user } = useSelector((state) => state.user);
   const [toggle, setToggle] = useState(false);
   useEffect(() => {
     socket.on("users", (data) => {
-      console.log(data);
+      // console.log(data);
       setusers(data);
     });
   }, [socket]);
   const handleSelectUser = (user) => {
     setselectedUser(user);
+    ref.current = user;
     setMsgs([]);
     socket.emit("user messages", user);
     setToggle(!toggle);
@@ -69,6 +70,6 @@ const UsersList = ({ setselectedUser, setMsgs, users, setusers }) => {
       </div>
     </>
   );
-};
+});
 
 export default UsersList;

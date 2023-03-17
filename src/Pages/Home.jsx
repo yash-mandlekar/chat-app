@@ -11,6 +11,7 @@ const Home = () => {
   const [msgs, setMsgs] = useState([]);
   const [selectedUser, setselectedUser] = useState(null);
   const [users, setusers] = useState([]);
+  const Userref = React.useRef();
   useEffect(() => {
     if (user) {
       socket.auth = {
@@ -33,15 +34,16 @@ const Home = () => {
   }, []);
   const privateMessage = useCallback(
     (data) => {
-      if (data.from === selectedUser?.userId) {
+      if (data.from === Userref.current?.userId || data.to === Userref.current?.userId) {
         setMsgs((msgs) => [...msgs, data]);
       } else { 
         handleMsgStatus(data, true);
       }
     },
-    [selectedUser, handleMsgStatus]
+    [ handleMsgStatus]
   );
   const userMessages = useCallback((data) => {
+    console.log(data);
     setMsgs(data.messages);
   }, []);
   useEffect(() => {
@@ -58,6 +60,7 @@ const Home = () => {
             users={users}
             setusers={setusers}
             selectedUser={selectedUser}
+            ref={Userref}
             setselectedUser={setselectedUser}
             setMsgs={setMsgs}
           />

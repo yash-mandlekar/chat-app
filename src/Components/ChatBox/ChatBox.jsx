@@ -2,15 +2,12 @@ import React, { useCallback, useEffect, useState } from "react";
 import "./ChatBox.css";
 import { socket } from "../../App";
 import { useSelector } from "react-redux";
-const ChatBox = ({ selectedUser, msgs }) => {
+const ChatBox = ({ selectedUser,msgs }) => {
   const { user } = useSelector((state) => state.user);
   const ref = React.useRef(null);
   const sendMessage = (e) => {
     e.preventDefault();
-    socket.emit("private", {
-      message: e.target.msg.value,
-      to: selectedUser.userId,
-    });
+    socket.emit("private", {message: e.target.msg.value,to: selectedUser.userId});
     e.target.msg.value = "";
     ref.current.scrollTo({ top: ref.current.scrollHeight, behavior: "smooth" });
   };
@@ -23,19 +20,17 @@ const ChatBox = ({ selectedUser, msgs }) => {
         <img src={`${selectedUser?.image}`} alt="" />
         <div>
           <div className="username">{selectedUser?.username}</div>
-          {selectedUser.connected && <div className="status">online</div>}
+          {selectedUser.connected&&<div className="status">online</div>}
         </div>
       </div>
       <div ref={ref} className="chat-box-main">
         {msgs.map((e, i) => (
           <div
             key={i}
-            className={`chat-box-content ${
-              user?._id === e.from ? "right" : ""
-            }`}
+            className={`chat-box-content ${user?._id === e.from ? "right" : ""}`}
           >
             <div className="chat-box-message">
-              {e.message}
+              {e.message} 
               <div className="triangle"></div>
             </div>
             <div className="chat-box-time">12:00</div>

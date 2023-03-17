@@ -33,6 +33,7 @@
 }
 /* Main Chat Box */
 .chat-box-main {
+  min-height: 70vh;
   max-height: 72vh;
   overflow-y: scroll;
   padding: 1.2vmax;

@@ -7,7 +7,7 @@ import Profile from "./Pages/Profile";
 import io from "socket.io-client";
 import { asyncloaduser } from "./store/userActions";
 // https://chat-app-cyan-five.vercel.app
-console.log(process.env.REACT_APP_API_URL);
+// console.log(process.env.REACT_APP_API_URL);
 export const socket = io.connect(process.env.REACT_APP_API_URL);
 const App = () => {
   const Dispatch = useDispatch();
