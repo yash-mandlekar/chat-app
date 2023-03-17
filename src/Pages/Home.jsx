@@ -39,7 +39,7 @@ const Home = () => {
     }
   }, [selectedUser,handleMsgStatus]);
   const userMessages = useCallback((data) => {
-    setMsgs(data.messages);
+    setMsgs(data.messages); 
   }, []);
   useEffect(() => {
     socket.on("private", (data) => privateMessage(data));
