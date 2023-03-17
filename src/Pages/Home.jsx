@@ -21,7 +21,7 @@ const Home = () => {
       socket.connect();
     }
   }, [user]);
-  const handleMsgStatus = useCallback((data,status) => {
+  const handleMsgStatus = useCallback((data, status) => {
     setusers((users) => {
       return users.map((single) => {
         if (single.userId === data.from) {
@@ -31,15 +31,18 @@ const Home = () => {
       });
     });
   }, []);
-  const privateMessage = useCallback((data) => {
-    if(data.from === selectedUser?.userId){
-      setMsgs((msgs) => [...msgs, data]);
-    }else{
-      handleMsgStatus(data,true);
-    }
-  }, [selectedUser,handleMsgStatus]);
+  const privateMessage = useCallback(
+    (data) => {
+      if (data.from === selectedUser?.userId) {
+        setMsgs((msgs) => [...msgs, data]);
+      } else {
+        handleMsgStatus(data, true);
+      }
+    },
+    [selectedUser, handleMsgStatus]
+  );
   const userMessages = useCallback((data) => {
-    setMsgs(data.messages); 
+    setMsgs(data.messages);
   }, []);
   useEffect(() => {
     socket.on("private", (data) => privateMessage(data));
@@ -51,7 +54,13 @@ const Home = () => {
         <Loader />
       ) : isAuthenticated ? (
         <div className="home">
-          <UsersList users={users} setusers={setusers} selectedUser={selectedUser} setselectedUser={setselectedUser} setMsgs={setMsgs} />
+          <UsersList
+            users={users}
+            setusers={setusers}
+            selectedUser={selectedUser}
+            setselectedUser={setselectedUser}
+            setMsgs={setMsgs}
+          />
           {selectedUser && <ChatBox selectedUser={selectedUser} msgs={msgs} />}
         </div>
       ) : (
